@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  become: false
+  tasks:
+    - name: Install codimd
+      helm:
+        chart:
+          name: ./codimd/hackmd
+          version: 1.2.1
+        name: codimd
+        namespace: codimd
+        state: present
+
