@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (HEAD)
+    traefik.enable: "false"
+  creationTimestamp: null
+  labels:
+    io.kompose.service: postfix
+  name: postfix
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (HEAD)
+        traefik.enable: "false"
+      creationTimestamp: null
+      labels:
+        io.kompose.service: postfix
+    spec:
+      containers:
+      - env:
+        - name: POSTFIX_myhostname
+          value: domain.tld
+        image: mwader/postfix-relay
+        name: postfix
+        resources: {}
+      restartPolicy: Always
+status: {}

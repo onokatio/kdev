@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (HEAD)
+    traefik.enable: "true"
+    traefik.frontend.rule: Host:domain.tld
+    traefik.port: "9000"
+  creationTimestamp: null
+  labels:
+    io.kompose.service: peertube
+  name: peertube
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 9000
+  selector:
+    io.kompose.service: peertube
+status:
+  loadBalancer: {}

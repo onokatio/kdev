@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  PEERTUBE_ADMIN_EMAIL: admin@domain.tld
+  PEERTUBE_DB_PASSWORD: postgres_password
+  PEERTUBE_DB_USERNAME: postgres_user
+  PEERTUBE_SMTP_DISABLE_STARTTLS: "false"
+  PEERTUBE_SMTP_FROM: noreply@domain.tld
+  PEERTUBE_SMTP_HOSTNAME: postfix
+  PEERTUBE_SMTP_PORT: "25"
+  PEERTUBE_SMTP_TLS: "false"
+  PEERTUBE_TRUST_PROXY: '["127.0.0.1", "loopback", "172.18.0.0/16"]'
+  PEERTUBE_WEBSERVER_HOSTNAME: domain.tld
+  PEERTUBE_WEBSERVER_HTTPS: "true"
+  PEERTUBE_WEBSERVER_PORT: "443"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: peertube-env
+  name: peertube-env

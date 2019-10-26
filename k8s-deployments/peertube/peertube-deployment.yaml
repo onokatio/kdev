@@ -1,0 +1,110 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (HEAD)
+    traefik.enable: "true"
+    traefik.frontend.rule: Host:domain.tld
+    traefik.port: "9000"
+  creationTimestamp: null
+  labels:
+    io.kompose.service: peertube
+  name: peertube
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (HEAD)
+        traefik.enable: "true"
+        traefik.frontend.rule: Host:domain.tld
+        traefik.port: "9000"
+      creationTimestamp: null
+      labels:
+        io.kompose.service: peertube
+    spec:
+      containers:
+      - env:
+        - name: PEERTUBE_ADMIN_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_ADMIN_EMAIL
+              name: peertube-env
+        - name: PEERTUBE_DB_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_DB_PASSWORD
+              name: peertube-env
+        - name: PEERTUBE_DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_DB_USERNAME
+              name: peertube-env
+        - name: PEERTUBE_SMTP_DISABLE_STARTTLS
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_SMTP_DISABLE_STARTTLS
+              name: peertube-env
+        - name: PEERTUBE_SMTP_FROM
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_SMTP_FROM
+              name: peertube-env
+        - name: PEERTUBE_SMTP_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_SMTP_HOSTNAME
+              name: peertube-env
+        - name: PEERTUBE_SMTP_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_SMTP_PORT
+              name: peertube-env
+        - name: PEERTUBE_SMTP_TLS
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_SMTP_TLS
+              name: peertube-env
+        - name: PEERTUBE_TRUST_PROXY
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_TRUST_PROXY
+              name: peertube-env
+        - name: PEERTUBE_WEBSERVER_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_WEBSERVER_HOSTNAME
+              name: peertube-env
+        - name: PEERTUBE_WEBSERVER_HTTPS
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_WEBSERVER_HTTPS
+              name: peertube-env
+        - name: PEERTUBE_WEBSERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: PEERTUBE_WEBSERVER_PORT
+              name: peertube-env
+        image: chocobozzz/peertube:production-stretch
+        name: peertube
+        ports:
+        - containerPort: 9000
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: peertube-claim0
+        - mountPath: /config
+          name: peertube-claim1
+      restartPolicy: Always
+      volumes:
+      - name: peertube-claim0
+        persistentVolumeClaim:
+          claimName: peertube-claim0
+      - name: peertube-claim1
+        persistentVolumeClaim:
+          claimName: peertube-claim1
+status: {}
