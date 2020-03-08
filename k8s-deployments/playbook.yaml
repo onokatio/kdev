@@ -6,8 +6,11 @@
     - name: Install codimd
       helm:
         chart:
-          name: ./codimd/hackmd
+          name: hackmd
           version: 1.2.1
+          source:
+            type: repo
+            location: https://kubernetes-charts.storage.googleapis.com
         name: codimd
         namespace: codimd
         state: present
