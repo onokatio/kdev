@@ -28,4 +28,6 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm repo add microsoft https://microsoft.github.io/charts/repo
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo add privatebin https://privatebin.github.io/helm-chart
+helm repo add prometheus-com https://prometheus-community.github.io/helm-charts
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
