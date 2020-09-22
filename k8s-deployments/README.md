@@ -30,4 +30,5 @@ helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo add privatebin https://privatebin.github.io/helm-chart
 helm repo add prometheus-com https://prometheus-community.github.io/helm-charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add jetstack https://charts.jetstack.io
 ```
