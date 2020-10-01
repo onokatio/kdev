@@ -15,3 +15,10 @@ kdevやkpubに関する全資源を集約するモノレポジトリ。
 公衆向けサービス。
 
 - kdevの環境を使い、インターネットに公開される様々なサービス群。
+
+## topolvm lvm management
+
+```
+sudo pvcreate /dev/sda1
+sudo vgcreate topolvm /dev/sda1
+```
