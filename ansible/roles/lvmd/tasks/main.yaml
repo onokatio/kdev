@@ -2,6 +2,24 @@
 #  apt:
 #    name: lvm2
 #
+#
+- name: Create topolvm binary directory
+  file:
+    path: /opt/sbin
+    state: directory
+
+- name: get lvmd
+  get_url:
+    url: "https://github.com/onokatio/topolvm/releases/download/v0.6.0/lvmd-linux-{{ ansible_facts['architecture'] }}"
+    dest: /opt/sbin/lvmd
+    owner: root
+    group: root
+
+- name: Create topolvm config directory
+  file:
+    path: /etc/topolvm
+    state: directory
+
 - name: Copy exmaple config
   copy:
     src: lvmd.yaml
@@ -10,7 +28,7 @@
 - name: Get lvmd.service file
   get_url:
     url: https://raw.githubusercontent.com/topolvm/topolvm/v0.5.3/deploy/systemd/lvmd.service
-    src: "{{ role_path }}/files/lvmd.service"
+    #src: "{{ role_path }}/files/lvmd.service"
     dest: /etc/systemd/system/lvmd.service
     owner: root
     group: root
@@ -19,3 +37,4 @@
   systemd:
     name: lvmd.service
     enabled: yes
+    state: started
