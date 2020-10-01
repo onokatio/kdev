@@ -2,6 +2,11 @@
 #  apt:
 #    name: lvm2
 #
+- name: Copy exmaple config
+  copy:
+    src: lvmd.yaml
+    dest: /etc/topolvm/lvmd.yaml
+
 - name: Get lvmd.service file
   get_url:
     url: https://raw.githubusercontent.com/topolvm/topolvm/v0.5.3/deploy/systemd/lvmd.service
@@ -14,8 +19,3 @@
   systemd:
     name: lvmd.service
     enabled: yes
-
-- name: Copy exmaple config
-  copy:
-    src: lvmd.yaml
-    dest: /etc/topolvm/lvmd.yaml
