@@ -1,8 +1,8 @@
 # Apply
 
 ```
-kubectl apply -f common/kdev-system.yaml
-kubectl apply -f common/cert-manager.yaml
+kubectl apply -f namespaces/kdev-system.yaml
+kubectl apply -f namespaces/cert-manager.yaml
 helm install -n kdev-system prometheus -f prometheus/config.yaml prometheus-com/prometheus
 helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.0.1 --set installCRDs=true
 ```
