@@ -17,5 +17,5 @@
 
 - name: Copy exmaple config
   copy:
-    src: lvmd.yaml.exmaple
-    dest: /etc/topolvm/lvmd.yaml.example
+    src: lvmd.yaml
+    dest: /etc/topolvm/lvmd.yaml
